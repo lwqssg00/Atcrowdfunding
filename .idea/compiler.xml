@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Actrowdfunding-main" />
+        <module name="Actrowdfunding-manager-impl" />
+        <module name="Atcrowdfunding-manager-api" />
+        <module name="Atcrowdfunding-potal-api" />
+        <module name="Atcrowdfunding-potal-impl" />
+        <module name="Atcrowdfuning-bean" />
+        <module name="Atcrowdfuning-common" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Actrowdfunding-main" target="1.8" />
+      <module name="Actrowdfunding-manager-impl" target="1.8" />
+      <module name="Atcrowdfunding-bean" target="1.8" />
+      <module name="Atcrowdfunding-common" target="1.8" />
+      <module name="Atcrowdfunding-main" target="1.8" />
+      <module name="Atcrowdfunding-manager-api" target="1.8" />
+      <module name="Atcrowdfunding-manager-impl" target="1.8" />
+      <module name="Atcrowdfunding-parent" target="1.8" />
+      <module name="Atcrowdfunding-potal-api" target="1.8" />
+      <module name="Atcrowdfunding-potal-impl" target="1.8" />
+      <module name="Atcrowdfuning-bean" target="1.8" />
+      <module name="Atcrowdfuning-common" target="1.8" />
+      <module name="Atcrowdingfunding-bean" target="1.8" />
+      <module name="Atrowdfunding-manager-api" target="1.8" />
+      <module name="Atrowdfunding-manager-impl" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

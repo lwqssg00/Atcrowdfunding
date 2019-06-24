@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/Actrowdfunding-main" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdfunding-common" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdfunding-manager-api" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdfunding-manager-impl" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-bean" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-common" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-main" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-manager-api" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-manager-impl" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-potal-api" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdfunding-potal-api" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdfunding-potal-impl" />
+    <file type="web" url="file://$PROJECT_DIR$/Atcrowdingfunding-bean" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Atcrowdfunding-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/Actrowdfunding-main/pom.xml" />
+        <option value="$PROJECT_DIR$/Actrowdfunding-manager-impl/pom.xml" />
+        <option value="$PROJECT_DIR$/Atcrowdfunding-potal-impl/pom.xml" />
+        <option value="$PROJECT_DIR$/Atcrowdfunding-manager-api/pom.xml" />
+        <option value="$PROJECT_DIR$/Atcrowdfunding-potal-api/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-bean/pom.xml" />
+        <option value="$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-common/pom.xml" />
+        <option value="$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-main/pom.xml" />
+        <option value="$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-manager-api/pom.xml" />
+        <option value="$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-manager-impl/pom.xml" />
+        <option value="$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-potal-api/pom.xml" />
+        <option value="$PROJECT_DIR$/Atcrowdfunding-parent/Atcrowdfunding-potal-impl/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
