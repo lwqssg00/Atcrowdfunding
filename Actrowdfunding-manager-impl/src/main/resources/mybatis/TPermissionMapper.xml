@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.crowdfunding.manager.dao.TPermissionMapper">
+
+
+
+    <select id="queryPermission" resultType="tPermission">
+      select * from t_permission;
+    </select>
+
+    <insert id="insert" parameterType="tPermission">
+        INSERT INTO t_permission
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="pid!=null">
+                ,pid
+            </if>
+            <if test="name!=null and name!=''">
+                ,name
+            </if>
+            <if test="icon!=null and icon!=''">
+                ,icon
+            </if>
+            <if test="url!=null and url!=''">
+                ,url
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="pid!=null">
+                ,#{pid}
+            </if>
+            <if test="name!=null and name!=''">
+                ,#{name}
+            </if>
+            <if test="icon!=null and icon!=''">
+                ,#{icon}
+            </if>
+            <if test="url!=null and url!=''">
+                ,#{url}
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

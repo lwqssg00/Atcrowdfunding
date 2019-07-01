@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.crowdfunding.manager.dao.TUserMapper">
+
+    <resultMap id="baseMap" type="tUser">
+        <id column="id" property="id" />
+        <result column="loginacct" property="loginacct" />
+        <result column="userpswd" property="userpswd" />
+        <result column="username" property="username" />
+        <result column="email" property="email" />
+        <result column="createtime" property="createtime" />
+        <result column="salt" property="salt" />
+        <result column="hash" property="hash" />
+        <result column="type" property="type" />
+    </resultMap>
+    <resultMap id="pswdAndsaltMap" type="tPswdSalt">
+        <result column="userpswd" property="password" />
+        <result column="salt" property="salt" />
+    </resultMap>
+
+    <resultMap id="userandroleMap" type="tUser" extends="baseMap">
+        <collection property="roles" fetchType="lazy" ofType="tRole" >
+            <id property="id" column="roleid" />
+            <result property="name" column="name" />
+        </collection>
+    </resultMap>
+
+
+
+    <select id="queryUserLogin" resultType="tUser" parameterType="map">
+
+      select id, loginacct, userpswd, username, email, createtime
+      from t_user
+      WHERE
+      loginacct=#{loginacct} and userpswd =#{userpswd}
+
+    </select>
+        <insert id="insert" parameterType="tUser">
+            insert into t_user
+            <trim prefix="(" suffix=")" prefixOverrides=",">
+                <if test="loginacct!=null and loginacct!=''">
+                    ,loginacct
+                </if>
+                <if test="userpswd!=null and userpswd!=''">
+                    ,userpswd
+                </if>
+                <if test="username!=null and username!=''">
+                    ,username
+                </if>
+                <if test="email!=null and email!=''">
+                    ,email
+                </if>
+                <if test="createtime!=null and createtime!=''">
+                    ,createtime
+                </if>
+                <if test="salt!=null and salt!=''">
+                    ,salt
+                </if>
+                <if test="hash!=null and hash!=''">
+                    ,hash
+                </if>
+                <if test="type!=null">
+                    ,type
+                </if>
+            </trim>
+            VALUES
+            <trim prefix="(" suffix=")" prefixOverrides=",">
+                <if test="loginacct!=null and loginacct!=''">
+                    ,#{loginacct}
+                </if>
+                <if test="userpswd!=null and userpswd!=''">
+                    ,#{userpswd}
+                </if>
+                <if test="username!=null and username!=''">
+                    ,#{username}
+                </if>
+                <if test="email!=null and email!=''">
+                    ,#{email}
+                </if>
+                <if test="createtime!=null and createtime!=''">
+                    ,#{createtime}
+                </if>
+                <if test="salt!=null and salt!=''">
+                    ,#{salt}
+                </if>
+                <if test="hash!=null and hash!=''">
+                    ,#{hash}
+                </if>
+                <if test="type!=null">
+                    ,#{type}
+                </if>
+            </trim>
+
+        </insert>
+
+    <select id="queryUserByName" parameterType="String" resultMap="pswdAndsaltMap">
+        select userpswd,salt from t_user where loginacct=#{loginacct} ;
+    </select>
+
+    <select id="queryList" resultMap="baseMap" parameterType="map">
+      select id, loginacct, userpswd, username, email, createtime
+      from t_user
+        <where>
+            <if test="queryText!=null and queryText!=''">
+                loginacct like concat("%",#{queryText},"%")
+            </if>
+        </where>
+        ORDER  BY createtime DESC
+        limit #{startindex},#{pagesize}
+    </select>
+
+    <select id="queryCount" resultType="int" parameterType="map">
+       select count(*)
+       from  t_user
+       <where>
+           <if test="queryText!=null and queryText!=''">
+               loginacct like concat("%",#{queryText},"%")
+           </if>
+       </where>
+    </select>
+
+    <select id="queryUserById" resultType="tUser" parameterType="int">
+
+        select id, loginacct, userpswd, username, email, createtime
+        FROM t_user
+        WHERE id=#{id}
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="tUser">
+        UPDATE t_user
+        <set>
+            <trim prefixOverrides=",">
+                <if test="loginacct!=null and loginacct!=''">
+                    ,loginacct=#{loginacct}
+                </if>
+                <if test="username!=null and username!=''">
+                    ,username=#{username}
+                </if>
+                <if test="email!=null and email!=''">
+                    ,email=#{email}
+                </if>
+            </trim>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="int">
+        DELETE FROM  t_user where id=#{id};
+    </delete>
+
+
+
+    <select id="queryRoleByid" parameterType="int" resultMap="userandroleMap">
+    select DISTINCT u.id id,u.loginacct loginacct,r.roleid roleid,t.`name` name
+    from  t_user u join t_user_role r on u.id =r.userid JOIN t_role t on r.roleid = t.id
+    WHERE u.id=#{id};
+    </select>
+
+
+
+
+</mapper>

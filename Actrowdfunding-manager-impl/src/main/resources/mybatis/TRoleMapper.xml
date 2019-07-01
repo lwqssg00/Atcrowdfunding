@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.crowdfunding.manager.dao.TRoleMapper">
+
+
+
+    <select id="queryNotHasRole" parameterType="list" resultType="tRole">
+
+        SELECT id,name
+        from t_role
+        <if test="list!=null">
+        <where>
+                id not IN
+                <foreach collection="list" open="(" close=")" separator="," item="id">
+                    #{id}
+                </foreach>
+        </where>
+        </if>
+    </select>
+
+
+    <insert id="insertRoseById">
+
+        INSERT into t_user_role
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+
+            <if test="user_id!=null and user_id!=0">
+                 ,userid
+            </if>
+            <if test="role_id!=null and role_id!=0">
+                ,roleid
+            </if>
+
+        </trim>
+        values
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+
+        <if test="user_id!=null and user_id!=0">
+            ,#{user_id}
+        </if>
+        <if test="role_id!=null and role_id!=0">
+            ,#{role_id}
+        </if>
+    </trim>
+
+
+    </insert>
+
+
+    <delete id="deleteRoleById">
+        delete from t_user_role WHERE userid =#{user_id} and roleid=#{role_id};
+    </delete>
+
+</mapper>
