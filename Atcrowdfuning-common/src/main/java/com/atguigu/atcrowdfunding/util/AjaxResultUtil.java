@@ -8,7 +8,6 @@ public class AjaxResultUtil {
 
     private Page page;
 
-
     private AjaxMsg ajaxMsg;
 
     public AjaxMsg getAjaxMsg() {

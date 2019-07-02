@@ -22,4 +22,6 @@ public interface TRoleMapper {
     int insertRoseById(@Param("user_id") Integer id,@Param("role_id") Integer i);
 
     int deleteRoleById(@Param("user_id") Integer id,@Param("role_id") Integer i);
+
+    List<TRole> queryAll();
 }

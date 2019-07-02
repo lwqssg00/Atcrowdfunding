@@ -4,4 +4,6 @@
     <typeAliases>
         <package name="com.atguigu.atcrowdfunding.bean" />
     </typeAliases>
+
+
 </configuration>

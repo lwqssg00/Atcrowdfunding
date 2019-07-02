@@ -34,11 +34,28 @@
 	            <value>classpath*:mybatis/*Mapper.xml</value>
 	        </list>
 	    </property>
+
+		<property name="plugins">
+				<array>
+					<bean class="com.github.pagehelper.PageInterceptor">
+						<property name="properties">
+							<!--使用下面的方式配置参数，一行配置一个 -->
+							<value>
+								helperDialect=mysql
+								reasonable=true
+								supportMethodsArguments=true
+								params=count=countSql
+								autoRuntimeDialect=true
+							</value>
+						</property>
+					</bean>
+				</array>
+		</property>
 	</bean>
-	
+	<!--,-->
 	<!-- 扫描Mapper映射配置 -->
-	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.atguigu.crowdfunding.manager.dao,com.atguigu.crowdfunding.potal.dao"/>
+	<bean id="mapperScannerConfigurer" class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.atguigu.mapper,com.atguigu.crowdfunding.manager.dao,com.atguigu.crowdfunding.potal.dao"/>
 	</bean>
 
 	<!-- 事务管理器 -->

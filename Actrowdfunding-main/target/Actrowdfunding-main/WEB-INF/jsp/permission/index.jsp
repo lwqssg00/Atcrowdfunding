@@ -86,30 +86,31 @@
             }
 
         };
-        function addHoverDom(treeId, treeNode) {
+        function addHoverDom(treeId, treeNode){
             var aObj = $("#" + treeNode.tId + "_a");
+
+            aObj.prop("href","javaScript:;");
             if ($("#btn_group_"+treeNode.id).length>0) return;
 
             var spangroup = "<span id='btn_group_"+treeNode.id+"'>";
 
             if(treeNode.level==0){
-                spangroup+="<button class='btn btn-default' onclick='window.location.href=\"${APP_PATH}/permission/toUpdate.htm?id="+treeNode.id+"\"'><span class='glyphicon glyphicon-edit'></span></button>";
+                spangroup+="<button class='btn btn-default' onclick='window.location.href=\"${APP_PATH}/permission/toUpdate/"+treeNode.id+".htm\"'><span class='glyphicon glyphicon-edit'></span></button>";
                 spangroup+="<button class='btn btn-default' onclick='window.location.href=\"${APP_PATH}/permission/toAdd.htm?id="+treeNode.id+"\"'><span class='glyphicon glyphicon glyphicon-plus'></span></button>";
 
             }else if(treeNode.level==1){
 
-                spangroup+="<button class='btn btn-default' onclick='window.location.href=\"${APP_PATH}/permission/toUpdate.htm?id="+treeNode.id+"\"'><span class='glyphicon glyphicon-edit'></span></button>";
+                spangroup+="<button class='btn btn-default' onclick='window.location.href=\"${APP_PATH}/permission/toUpdate/"+treeNode.id+".htm\"'><span class='glyphicon glyphicon-edit'></span></button>";
                 if(treeNode.children.length==0){
-                    spangroup+="<button class='btn btn-default'><span class='glyphicon glyphicon-remove'></span></button>";
+                    spangroup+="<button class='btn btn-default' onclick='todelete("+treeNode.id+")'><span class='glyphicon glyphicon-remove'></span></button>";
                 }
                 spangroup+="<button class='btn btn-default' onclick='window.location.href=\"${APP_PATH}/permission/toAdd.htm?id="+treeNode.id+"\"'><span class='glyphicon glyphicon glyphicon-plus'></span></button>";
 
             }else if(treeNode.level==2){
 
-                spangroup+="<button class='btn btn-default' onclick='window.location.href=\"${APP_PATH}/permission/toUpdate.htm?id="+treeNode.id+"\"'><span class='glyphicon glyphicon-edit'></span></button>";
+                spangroup+="<button class='btn btn-default' onclick='window.location.href=\"${APP_PATH}/permission/toUpdate/"+treeNode.id+".htm\"'><span class='glyphicon glyphicon-edit'></span></button>";
+                spangroup+="<button class='btn btn-default' onclick='todelete("+treeNode.id+")'><span class='glyphicon glyphicon-remove'></span></button>";
 
-                spangroup+="<button class='btn btn-default'><span class='glyphicon glyphicon-remove'></span></button>";
-                spangroup+="<button class='btn btn-default' onclick='window.location.href=\"${APP_PATH}/permission/toAdd.htm?id="+treeNode.id+"\"'><span class='glyphicon glyphicon glyphicon-plus'></span></button>";
             }
             spangroup+="</span>"
             aObj.append(spangroup);
@@ -122,16 +123,16 @@
 
 
 
-        function addDiyDom(treeId, treeNode) {
+    function addDiyDom(treeId, treeNode) {
 
             var aObj = $("#" + treeNode.tId + "_ico");
 
             if(treeNode.icon){
                 aObj.removeClass("button ico_docu").addClass(treeNode.icon).css({"background":""});
             }
-        }
+    }
 
-        $.ajax({
+    $.ajax({
 
             type:"post",
 
@@ -159,21 +160,42 @@
 
         })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     });
+    function todelete(id) {
+        layer.confirm('您确定删除此节点？', {
+            btn: ['是的','取消'] //按钮
+        }, function(){
+            var index = layer.load(1, {
+                shade: [0.1,'#fff'] //0.1透明度的白色背景
+            });
+            $.ajax({
+                type:"post",
+                data:{
+                    "id":id
+                },
+                url:"${APP_PATH}/permission/delete.do",
+                beforeSend:function () {
+                    return true;
+                },
+                success:function (result) {
+                    layer.close(index);
+                    if(result.issuccess){
+                        layer.msg(result.message, {icon: 1,time:3000});
+                        setTimeout(function () {
+                            window.location.href="${APP_PATH}/permission/toIndex.htm";
+                        },3000)
 
+                    }else{
+                        layer.msg(result.message, {icon: 5});
+                    }
+                },
+                error:function () {
+                    layer.msg('出现错误', {icon: 5});
+                    layer.close(index);
+                }
+            })
+        });
+    }
 </script>
 </body>
 </html>

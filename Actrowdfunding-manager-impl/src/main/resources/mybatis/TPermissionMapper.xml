@@ -41,4 +41,43 @@
         </trim>
     </insert>
 
+    <select id="queryPermissionById" parameterType="int" resultType="tPermission">
+
+        SELECT id,pid,name,icon,url
+        from t_permission
+        where id=#{id}
+    </select>
+
+
+    <update id="updatePermission" parameterType="tPermission">
+        update t_permission
+        <set>
+            <if test="id !=null">
+                <trim prefixOverrides=",">
+                    <if test="name!=null and name!=''">
+                        ,name=#{name}
+                    </if>
+                    <if test="icon!=null and icon!=''">
+                        ,icon=#{icon}
+                    </if>
+                    <if test="url!=null and url!=''">
+                        ,url=#{url}
+                    </if>
+                </trim>
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="int">
+
+        DELETE from t_permission where id=#{id}
+    </delete>
+
+
+
+
 </mapper>

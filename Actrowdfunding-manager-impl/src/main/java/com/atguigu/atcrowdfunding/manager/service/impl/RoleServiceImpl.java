@@ -1,7 +1,10 @@
 package com.atguigu.atcrowdfunding.manager.service.impl;
 
+import com.atguigu.atcrowdfunding.bean.TRole;
 import com.atguigu.crowdfunding.manager.dao.TRoleMapper;
 import com.atguigu.crowdfunding.manager.service.RoleService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +40,17 @@ public class RoleServiceImpl implements RoleService{
         }
         return cout==ids.size()?true:false;
 
+    }
+
+    @Override
+    public PageInfo queryAll(Integer pageNum,Integer pageSize) {
+
+
+        PageHelper.startPage(pageNum,pageSize);
+        List<TRole> list = tRoleMapper.queryAll();
+
+        PageInfo page = new PageInfo(list);
+
+        return page;
     }
 }

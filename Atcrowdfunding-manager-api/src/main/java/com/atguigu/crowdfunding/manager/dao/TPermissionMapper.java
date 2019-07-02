@@ -17,4 +17,8 @@ public interface TPermissionMapper {
     int updateByPrimaryKey(TPermission record);
 
     List<TPermission> queryPermission();
+
+    TPermission queryPermissionById(Integer id);
+
+    int updatePermission(TPermission tPermission);
 }

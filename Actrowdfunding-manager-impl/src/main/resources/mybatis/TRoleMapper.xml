@@ -51,4 +51,8 @@
         delete from t_user_role WHERE userid =#{user_id} and roleid=#{role_id};
     </delete>
 
+    <select id="queryAll" resultType="tRole">
+
+        SELECT * from t_role
+    </select>
 </mapper>

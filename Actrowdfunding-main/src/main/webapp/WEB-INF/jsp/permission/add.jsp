@@ -24,6 +24,12 @@
             list-style-type: none;
             cursor:pointer;
         }
+
+        select{
+            appearance:none;
+            -moz-appearance:none;
+            -webkit-appearance:none;
+        }
     </style>
 </head>
 
@@ -50,6 +56,20 @@
                             <label for="furl">管理URL</label>
                             <input type="text" class="form-control" id="furl" placeholder="请输入url">
                         </div>
+
+                        <div class="form-group">
+                            <label for="furl">选择图标</label>
+                            <select class="form-control"  id="ficon">
+                                <option value="glyphicon glyphicon-picture" selected>
+                                    glyphicon glyphicon-picture
+                                </option>
+                                <option value="glyphicon glyphicon-blackboard">
+                                    glyphicon glyphicon-blackboard
+                                </option>
+                            </select>
+
+                        </div>
+
                         <div class="form-group">
                             <label for="fname">权限名称</label>
                             <input type="text" class="form-control"  id="fname" placeholder="请输入权限名称">
@@ -113,14 +133,15 @@
 
         var name = $("#fname");
 
-
+        var icon = $("#ficon")
 
         $.ajax({
             type:"POST",
             data:{
                 "pid":${param.id},
                 'url':furl.val(),
-                'name':name.val()
+                'name':name.val(),
+                'icon':icon.val()
             },
             url:"${APP_PATH}/permission/addPermission.do",
 

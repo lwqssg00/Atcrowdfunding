@@ -35,4 +35,29 @@ public class PermissionServiceImpl implements PermissionService {
 
         return insert>0?true:false;
     }
+
+    @Override
+    public TPermission queryPermissionById(Integer id) {
+
+        TPermission tPermission= tPermissionMapper.queryPermissionById(id);
+
+        return tPermission;
+    }
+
+    @Override
+    public boolean updatePermission(TPermission tPermission) {
+
+        int i = tPermissionMapper.updatePermission(tPermission);
+
+
+        return i>0?true:false;
+    }
+
+    @Override
+    public boolean deletePermission(Integer id) {
+        int i = tPermissionMapper.deleteByPrimaryKey(id);
+
+
+        return i>0?true:false;
+    }
 }

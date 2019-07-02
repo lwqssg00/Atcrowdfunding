@@ -20,6 +20,8 @@
   </properties>
 
   <dependencies>
+
+    <!-- https://mvnrepository.com/artifact/tk.mybatis/mapper -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -47,7 +49,6 @@
       <artifactId>jsp-api</artifactId>
       <scope>provided</scope><!-- 注意！！！！ -->
     </dependency>
-
 
     
   </dependencies>

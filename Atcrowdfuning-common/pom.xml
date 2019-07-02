@@ -13,6 +13,13 @@
     <artifactId>Atcrowdfuning-common</artifactId>
     <packaging>jar</packaging>
     <dependencies>
+
+
+        <!--分页插件 -->
+
+        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+
+
         <dependency>
             <groupId>com.atguigu.maven</groupId>
             <artifactId>Atcrowdfuning-bean</artifactId>
